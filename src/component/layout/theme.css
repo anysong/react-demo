@@ -417,7 +417,9 @@ footer p {
 	color: #FFFFFF;
 	margin: 0px;
 }
-
+.top-navbar .nav > li:hover .dropdown-menu{
+	display: block;
+}
 .top-navbar .nav > li > a:hover, .top-navbar .nav > li > a:focus {
 	text-decoration: none;
 	color: #319DB5 !important;
@@ -427,6 +429,7 @@ footer p {
 .top-navbar .dropdown-menu {
 	min-width: 230px;
 	border-radius: 0 0 4px 4px;
+	top: 98%;
 }
 
 .top-navbar .dropdown-menu > li > a:hover, .top-navbar .dropdown-menu > li > a:focus {
@@ -533,6 +536,10 @@ ul.nav.nav-second-level.collapse.in {
 
 .top-navbar .nav > li > a > i {
 	margin-right: 2px;
+}
+.top-navbar .nav > li > a > span {
+	color: #666;
+	margin-right: 5px;
 }
 
 .top-navbar .navbar-brand:hover {

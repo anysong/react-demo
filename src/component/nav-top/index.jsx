@@ -18,7 +18,7 @@ class NavTop extends React.Component{
 
             <ul className="nav navbar-top-links navbar-right">
                 <li className="dropdown">
-                    <a className="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    <a className="dropdown-toggle" href="javascript:;">
                         <i className="fa fa-user fa-fw"></i>
                         <span>hello</span>     
                         <i className="fa fa-caret-down"></i>
