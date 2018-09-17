@@ -15,6 +15,9 @@ class Login extends React.Component {
 			[inputName]: inputValue
 		})
 	}
+	onSubmit(e){
+		console.log(e);
+	}
 	render(){
 		return (
 			<div>
@@ -22,7 +25,7 @@ class Login extends React.Component {
 					<div className="panel panel-default login-panel">
 					  <div className="panel-heading">登录</div>
 					  <div className="panel-body">
-					  		<form>
+					  		<div>
 							  <div className="form-group">
 							    <input type="text"
 							    	   name="username" 
@@ -37,8 +40,9 @@ class Login extends React.Component {
 							    	   placeholder="请输入密码"
 							    	   onChange={e => this.onInputChange(e)} />
 							  </div>
-							  <button type="submit" className="btn btn-primary col-md-12">登录</button>
-							</form>
+							  <button className="btn btn-primary col-md-12"
+							  		  onClick={e => {this.onSubmit(e)}}>登录</button>
+							</div>
 					  </div>
 					</div>
 				</div>
