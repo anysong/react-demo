@@ -14,12 +14,20 @@ class Login extends React.Component {
 			redirect: _mm.getUrlParam('redirect') || ''
 		}
 	}
+	componentWillMount(){
+		document.title = '登录页面';
+	}
 	onInputChange(e){
 		let inputName = e.target.name,
 			inputValue = e.target.value;
 		this.setState({
 			[inputName]: inputValue
 		})
+	}
+	onInputKeyUp(e){
+		if(e.keyCode === 13){
+			this.onSubmit();
+		}
 	}
 	onSubmit(e){
 		let data = {
@@ -33,6 +41,7 @@ class Login extends React.Component {
 			_user.login(data)
 			.then( (res) => {
 				console.log(this.state.redirect);
+				_mm.setStorage('userInfo', res.data);
 				this.props.history.push(this.state.redirect)
 			}, (errMsg) => {
 				console.log(errMsg)
@@ -52,22 +61,24 @@ class Login extends React.Component {
 					  <div className="panel-heading">登录</div>
 					  <div className="panel-body">
 					  		<div>
-							  <div className="form-group">
-							    <input type="text"
-							    	   name="username" 
-							    	   className="form-control" 
-							    	   placeholder="请输入帐号"
-							    	   onChange={e => this.onInputChange(e)} />
-							  </div>
-							  <div className="form-group">
-							    <input type="password"
-							    	   name="password"  
-							    	   className="form-control" 
-							    	   placeholder="请输入密码"
-							    	   onChange={e => this.onInputChange(e)} />
-							  </div>
-							  <button className="btn btn-primary col-md-12"
-							  		  onClick={e => {this.onSubmit(e)}}>登录</button>
+							  	<div className="form-group">
+								    <input type="text"
+								    	   name="username" 
+								    	   className="form-control" 
+								    	   placeholder="请输入帐号"
+								    	   onKeyUp={e => this.onInputKeyUp(e)}
+								    	   onChange={e => this.onInputChange(e)} />
+								</div>
+							  	<div className="form-group">
+								    <input type="password"
+								    	   name="password"  
+								    	   className="form-control" 
+								    	   placeholder="请输入密码"
+								    	   onKeyUp={e => this.onInputKeyUp(e)}
+								    	   onChange={e => this.onInputChange(e)} />
+							  	</div>
+							  	<button className="btn btn-primary col-md-12"
+							  		  	onClick={e => {this.onSubmit(e)}}>登录</button>
 							</div>
 					  </div>
 					</div>

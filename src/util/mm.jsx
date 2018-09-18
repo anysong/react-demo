@@ -41,6 +41,32 @@
  	errorTips(errMsg){
  		alert(errMsg || '错误')
  	}
+ 	// 存储
+ 	setStorage(name, data){
+ 		let dataType = typeof data;
+ 		if(dataType === 'object'){
+ 			window.sessionStorage.setItem(name, JSON.stringify(data));
+ 		}else if(['number','string','boolean'].indexOf(dataType) >= 0){
+ 			window.sessionStorage.setItem(name, data);
+ 		}else {
+ 			alert('该类型不能本地存储')
+ 		}
+ 	}
+ 	// 提取
+ 	getStorage(name){
+ 		let data = window.sessionStorage.getItem(name);
+ 		if(data){
+ 			return JSON.parse(data);
+ 		}else {
+ 			return '';
+ 		}
+ 	}
+ 	// 删除
+ 	removeStorage(name){
+ 		window.sessionStorage.removeItem(name);
+ 	}
+
+
  }
 
  export default MUtil

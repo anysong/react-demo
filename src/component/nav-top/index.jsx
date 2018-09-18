@@ -1,10 +1,18 @@
 
 import React from "react";
 import {Link} from 'react-router-dom';
+import MUtil from "util/mm.jsx";
+const _mm = new MUtil();
 
 class NavTop extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            username: _mm.getStorage('userInfo').username || 'aa'
+        }
+    }
+    componentWillMount(){
+        console.log(_mm.getStorage('userInfo'))
     }
     onLogout(){
 
@@ -26,7 +34,7 @@ class NavTop extends React.Component{
                 <li className="dropdown">
                     <a className="dropdown-toggle" href="javascript:;">
                         <i className="fa fa-user fa-fw"></i>
-                        <span>欢迎, adminxxx</span>     
+                        <span>欢迎, {this.state.username}</span>     
                         <i className="fa fa-caret-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-user">
