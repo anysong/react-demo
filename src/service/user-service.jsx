@@ -10,6 +10,12 @@ class User {
 			data: data
 		});
 	}
+	logout(){
+		return _mm.request({
+			url: '/user/logout.do',
+			type: 'post',
+		});
+	}
 	//
 	checkLoginInfo(data){
 		let username = $.trim(data.username),
@@ -31,6 +37,15 @@ class User {
 			status: true,
 			msg: '验证成功'
 		}
+	}
+	getUserList(pageNum){
+		return _mm.request({
+			url: '/manage/user/list.do',
+			type: 'post',
+			data: {
+				pageNum: pageNum
+			}
+		});
 	}
 }
 

@@ -83,7 +83,11 @@ module.exports = {
             '/manage' : {
                 target: 'http://admintest.happymmall.com',
                 changeOrigin : true
-            }
+            },
+            '/user/logout.do': {
+                target: 'http://admintest.happymmall.com',
+                changeOrigin : true
+            },
         }
     }
 };
