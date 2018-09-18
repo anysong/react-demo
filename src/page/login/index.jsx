@@ -1,4 +1,9 @@
 import React from "react";
+import User from "service/user-service.jsx";
+import MUtil from "util/mm.jsx";
+const _mm = new MUtil();
+const _user = new User();
+
 import './index.scss';
 class Login extends React.Component {
 	constructor(props){
@@ -6,6 +11,7 @@ class Login extends React.Component {
 		this.state = {
 			username: '',
 			password: '',
+			redirect: _mm.getUrlParam('redirect') || ''
 		}
 	}
 	onInputChange(e){
@@ -16,7 +22,27 @@ class Login extends React.Component {
 		})
 	}
 	onSubmit(e){
-		console.log(e);
+		let data = {
+				username: this.state.username,
+				password: this.state.password
+			}
+		let checkResult = _user.checkLoginInfo(data);
+		
+		if(checkResult.status){
+			//通过
+			_user.login(data)
+			.then( (res) => {
+				console.log(this.state.redirect);
+				this.props.history.push(this.state.redirect)
+			}, (errMsg) => {
+				console.log(errMsg)
+				_mm.errorTips(errMsg);
+			})
+		}else{
+			//不通过
+			_mm.errorTips(checkResult.msg)
+		}
+		
 	}
 	render(){
 		return (
